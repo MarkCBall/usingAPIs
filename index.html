@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Mark's budget ethereum tracking page</title>
+    <script src="./APIkey.js">
+      const API_ethprice = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=";
+      const API_KEY = APIkey();
+      window.alert(APIKEY);
+      
+      //"SS6K7PG8J46S6I5X4UQ6ZWZN6MPGITM7G6";
+      //const API_FULL = API_URL + API_KEY;
+      var lastupdatetime = new Date();
+      //why must I create date as a specified object????????????? and why can't i subtract dates
+
+      
+      
+      function upethprice(){
+        fetch(API_ethprice+API_KEY)
+        .then( function(result){
+            const jsonfile = result.json();
+            //window.alert(jsonfile);
+            return jsonfile;
+        })
+        .then(function(res){
+            document.getElementById("ethprice").innerHTML = res.result.ethbtc;
+            //window.alert("You have waited " + Date().getTime - lastupdatetime.getTime + " seconds since you last updated");
+            //window.alert(lastupdatetime + " was before and now is " + Date())
+            //window.alert(   Date().getTime() );
+            
+            let nowtime = new Date();
+            //window.alert("time between price updates was" + (nowtime.getTime() - lastupdatetime.getTime())/1000 + " seconds");
+            lasteupdatetime = nowtime;
+            //debugger;
+            
+
+        })
+      }
+      
+      upethprice();
+      
+
+      function twodigits(num){
+          return ("0" + num).slice(-2);
+      }
+
+
+//  window.onload = 
+       function updateClock() {
+            var now = new Date(); // current date
+            months = ['January', 'February', 'March' , 'April', "May" , "June" , "July" , "August" , 'September', "October" , "November" , "December"]; // you get the idea
+            time = twodigits(now.getHours()) + ':' + twodigits(now.getMinutes()) +':'+ twodigits(now.getSeconds()) ; // again, you get the idea
+
+            // a cleaner way than string concatenation
+            date = [now.getDate(), months[now.getMonth()], now.getFullYear()].join(' ');
+
+            // set the content of the element with the ID time to the formatted string
+            document.getElementById("time").innerHTML = [date, time].join(' / ');
+
+            // call this function again in 1000ms
+            setTimeout(updateClock, 1000);
+        }
+        //updateClock(); // initial call
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+  </head>
+  <body>
+    <p> This is mark's site and the price of ether is currently <span id="ethprice">???</span> bitcoin per ethereum</p>
+
+    <button onclick="upethprice()">Click here to refresh ethereum price</button>
+    <p>The current time is <span id="time">?</span></p>
+    <button onclick="updateClock()">Update time</button>
+  </body>
+</html>
