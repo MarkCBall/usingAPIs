@@ -7,9 +7,9 @@
    
   </head>
   <body>
-    <p> This is mark's site and the price of ether is currently <span id="ethprice">???</span> bitcoin per ethereum</p>
+    <p> This is mark's site and the price of ether is currently $<span id="ethprice">???</span> USD</p>
 
-    <p>The price was last updated at <span id="time">?</span></p>
+    <p>The api was last called at <span id="timecalled">?</span> and the API last gave a result at <span id="timeupdated">?</span></p>
     <button onclick="autoupdate(true)">Click here to auto refresh the eth price every (set the time later)</button>
     <button onclick="autoupdate(false)">Stop auto updating eth price</button>
   </body>
@@ -18,7 +18,6 @@
         const API_ethprice = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=";
         const API_KEY = APIkey();//the API key is not pushed to github this way
   
-  
         function upethprice(){
           fetch(API_ethprice+API_KEY)
           .then( function(result){
@@ -26,45 +25,41 @@
               return jsonfile;
           })
           .then(function(res){
-              document.getElementById("ethprice").innerHTML = res.result.ethbtc;
-              let nowtime = new Date();
-              lasteupdatetime = nowtime;
+              document.getElementById("ethprice").innerHTML = res.result.ethusd;
+              console.log(res.result.ethusd_timestamp)
+              updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
           })
         }
         
-         
-         function updateClock() {
-              const twodigits = (num) => { return ("0" + num).slice(-2) }; //function twodigits(num){ return ("0" + num).slice(-2);}
-              var now = new Date();
-              months = ['Jan','Feb','Mar','Apr',"May","Jun","Jul","Aug",'Sep',"Oct","Nov","Dec"];
-              let time = twodigits(now.getHours()) + ':' + twodigits(now.getMinutes()) +':'+ twodigits(now.getSeconds()) ;
-              let date = [now.getDate(), months[now.getMonth()], now.getFullYear()].join(' ');
-              document.getElementById("time").innerHTML = [date, time].join(' / ');
+         function updateClock(clockloc, timestamp ) {
+            const twodigits = (num) => { return ("0" + num).slice(-2) }; //function twodigits(num){ return ("0" + num).slice(-2);}
+              
+            if (timestamp >0)
+                var now = new Date(timestamp);
+            else
+                var now = new Date();
+
+            months = ['Jan','Feb','Mar','Apr',"May","Jun","Jul","Aug",'Sep',"Oct","Nov","Dec"];
+            let time = twodigits(now.getHours()) + ':' + twodigits(now.getMinutes()) +':'+ twodigits(now.getSeconds()) ;
+            let date = [now.getDate(), months[now.getMonth()], now.getFullYear()].join(' ');
+            document.getElementById(clockloc).innerHTML = [date, time].join(' / ');
           }
          
           //initialize
           upethprice();
-          updateClock();//why doesn't this work? html not set yet
-  
-  
+          updateClock("timecalled" );
   
   
           var updateinterval;
           function autoupdate(on){
-                  if (on && updateinterval==null)
-                      updateinterval = setInterval(function(){upethprice();updateClock();},1000);
-                  if (!on){
-                      clearInterval(updateinterval);
-                      updateinterval = null;
+                if (on && updateinterval==null){
+                    updateinterval = setInterval(function(){upethprice();updateClock("timecalled");},1000);
+                }
+                if (!on){
+                    clearInterval(updateinterval);
+                    updateinterval = null;
                   }
           }
-  
-  
-  
-  
-  
-  
-  
-      </script>
 
+      </script>
 </html>
