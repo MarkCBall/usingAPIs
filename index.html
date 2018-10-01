@@ -3,84 +3,41 @@
   <head>
     <meta charset="UTF-8">
     <title>Mark's budget ethereum tracking page</title>
+    <link rel="stylesheet" href="index.css">
     <script src="APIkey.js"> </script>
+    
    
   </head>
   <body>
-    <h1> The price of ethereum is currently $<span id="ethprice">???</span> USD</h1>
+    <div id="ethereum_info">
+        <div id="top_row">
+            <div id="image"><img id="image" src="Assets/eth_icon.png"></div>
+            <div id="price_info">Eth price is<br><span id="ethprice">???</span> USD </div>
+            <div id="toggleupdate"><input type="checkbox" onclick=autoupdate()>
+                <span>Displayed ethereum price will update every</span>
+                <input style="width: 3em" type="number" min="1" id="interval" minlength="1" value="1" oninput="validity.valid;">
+                <span> seconds</span>
+            </div>
+        </div>
+        <div id="mid_row">
+            <div id="last_block">LAST BLOCK<br><span id="block_height">??</span>(not updating)</div>
+            <div id="transactions">Transactions<br>317M<br>(not functioning)</div>
+        </div>
+        <div id="bot_row">
+            <div id="hash_rate">Hash Rate<br>266 GH/s<br>(not functioning)</div>
+            <div id="difficulty">Network difficulty<br>3626 TH<br>(not functioning)</div>
+        </div>
+
+
+
+
+    </div>
 
     <p>The api was last called at <span id="timecalled">?</span> and the API last gave a result at <span id="timeupdated">?</span></p>
 
-    <br><br>
-    <input type="checkbox" id="toggleupdate" onclick=autoupdate()>
-    <span>Displayed ethereum price will update every</span>
-    <input style="width: 3em" type="number" min="1" id="interval" minlength="1" value="1" oninput="validity.valid;">
-    <span> seconds</span>
+
 
 
   </body>
-
-  <script> 
-        const API_ethprice = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=";
-        const API_KEY = APIkey();//the API key is not pushed to github this way
-  
-        //gets the current ethereum price from etherscan and calls a function to update the screen
-        function upethprice(){
-          fetch(API_ethprice+API_KEY)
-          .then( function(result){
-              const jsonfile = result.json();
-              return jsonfile;
-          })
-          .then(function(res){
-              document.getElementById("ethprice").innerHTML = res.result.ethusd;
-              //console.log(res.result.ethusd_timestamp)
-              updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
-          })
-        }
-        
-        //Takes in a date onject and returns a string representing the date and time
-        function datetostring(dateobj){
-            const twodigits = (num) => { return ("0" + num).slice(-2) }; //function twodigits(num){ return ("0" + num).slice(-2);}
-            months = ['Jan','Feb','Mar','Apr',"May","Jun","Jul","Aug",'Sep',"Oct","Nov","Dec"];
-            let time = twodigits(dateobj.getHours()) + ':' + twodigits(dateobj.getMinutes()) +':'+ twodigits(dateobj.getSeconds()) ;
-            let date = [dateobj.getDate(), months[dateobj.getMonth()], dateobj.getFullYear()].join(' ');
-            return [date, time].join(' / ');
-        }//end datetostring
-
-        //updates the html file in the specified spot. Uses current system time if no timestamp is given
-        function updateClock(clockloc, timestamp ) {
-            if (timestamp >0)
-                var dateobj = new Date(timestamp);
-            else
-                var dateobj = new Date();
-            document.getElementById(clockloc).innerHTML = datetostring(dateobj);
-        }//end updateclock
-         
-        //cancels or starts auto updating ethereum price and checks if the window is already updating
-        var updateinterval;
-        function autoupdate(){
-            if (updateinterval==null){
-                let delay = Math.max(1000,document.getElementById("interval").value*1000);
-                updateinterval = setInterval(function(){upethprice();updateClock("timecalled");},delay);
-                //disallow changes to interval length
-                document.getElementById("interval").readOnly=true;
-                    
-            }
-            else{
-                clearInterval(updateinterval);
-                updateinterval = null;
-                //allow changes to interval length
-                document.getElementById("interval").readOnly=false;
-                }
-        }//end updateinterval
-
-
-
-          //initialize
-          upethprice();
-          updateClock("timecalled" );
-  
-
-
-      </script>
+  <script src="index.js"></script>
 </html>

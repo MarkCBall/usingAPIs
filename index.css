@@ -1,0 +1,85 @@
+        
+html{
+    height:100%;
+  }
+body {
+    font-family: verdana;
+    background-color: rgb(103, 142, 180);
+    padding: 0px;
+    height:100%;
+  }
+
+div div{
+    align-items: center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+ #ethereum_info{
+     display:flex;
+     flex-direction:column;
+     height:35%;
+     width:50%;
+     background-color: rgba(43, 255, 0, 0.2) ;
+ }
+#top_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(98, 121, 93, .5) ; */
+    flex-direction:row;
+}
+#image{
+    display:flex;
+    width:20%;
+}
+#image img{
+    display:flex;
+    width:100%;
+}
+#price_info{
+    display:flex;
+    width:25%;
+}
+#ethprice{
+    font-size:2em;
+    font-weight:bold;
+    color:red;
+}
+#toggleupdate{
+    display:flex;
+    font-size:.8em;
+    width:75%;
+    flex-direction:row;
+}
+
+
+#mid_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(27, 28, 110, 0.281) ; */
+    flex-direction:row;
+}
+#last_block{
+    display:flex;
+    width:50%;
+}
+#transactions{
+    display:flex;
+    width:50%;
+}
+
+
+
+#bot_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(39, 13, 3, 0.281) ; */
+    flex-direction:row;
+}
+#hash_rate{
+    display:flex;
+    width:50%;
+}
+#difficulty{
+    display:flex;
+    width:50%;
