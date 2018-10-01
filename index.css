@@ -12,13 +12,14 @@ body {
 div div{
     align-items: center;
     justify-content:center;
+    flex-direction:column;
 }
 
  #ethereum_info{
      display:flex;
      flex-direction:column;
      height:35%;
-     width:35%;
+     width:50%;
      background-color: rgba(43, 255, 0, 0.2) ;
  }
 #top_row{
@@ -37,11 +38,18 @@ div div{
 }
 #price_info{
     display:flex;
-    width:40%;
+    width:25%;
 }
-#autoupdate_box{
+#ethprice{
+    font-size:2em;
+    font-weight:bold;
+    color:red;
+}
+#toggleupdate{
     display:flex;
-    width:40%;
+    font-size:.8em;
+    width:75%;
+    flex-direction:row;
 }
 
 

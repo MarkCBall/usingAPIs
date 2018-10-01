@@ -1,19 +1,25 @@
         const API_ethprice = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=";
+        const API_uplastblock ="";
         const API_KEY = APIkey();//the API key is not pushed to github this way
   
         //gets the current ethereum price from etherscan and calls a function to update the screen
         function upethprice(){
           fetch(API_ethprice+API_KEY)
-          .then( function(result){
-              const jsonfile = result.json();
-              return jsonfile;
-          })
-          .then(function(res){
+          .then( result => result.json() )
+          .then(res => {
               document.getElementById("ethprice").innerHTML = res.result.ethusd;
-              //console.log(res.result.ethusd_timestamp)
               updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
           })
         }
+
+        //gets block height from another source
+        function uplastblock(){
+            fetch("https://api.blockcypher.com/v1/eth/main")
+            .then (result => result.json())
+            .then (res => document.getElementById("block_height").innerHTML = res.height)
+            .catch (err => console.log(err));
+        }
+
         
         //Takes in a date onject and returns a string representing the date and time
         function datetostring(dateobj){
@@ -40,14 +46,13 @@
                 let delay = Math.max(1000,document.getElementById("interval").value*1000);
                 updateinterval = setInterval(function(){upethprice();updateClock("timecalled");},delay);
                 //disallow changes to interval length
-                document.getElementById("interval").readOnly=true;
-                    
+                document.getElementById("interval").disabled=true;
             }
             else{
                 clearInterval(updateinterval);
                 updateinterval = null;
                 //allow changes to interval length
-                document.getElementById("interval").readOnly=false;
+                document.getElementById("interval").disabled=false;
                 }
         }//end updateinterval
 
@@ -56,4 +61,5 @@
           //initialize
           upethprice();
           updateClock("timecalled" );
+          uplastblock();
   

@@ -12,16 +12,20 @@
     <div id="ethereum_info">
         <div id="top_row">
             <div id="image"><img id="image" src="Assets/eth_icon.png"></div>
-            <div id="price_info">$233.25 @ 0.0351 BTC/ETH</div>
-            <div id="autoupdate_box"><input type="checkbox"></div>
+            <div id="price_info">Eth price is<br><span id="ethprice">???</span> USD </div>
+            <div id="toggleupdate"><input type="checkbox" onclick=autoupdate()>
+                <span>Displayed ethereum price will update every</span>
+                <input style="width: 3em" type="number" min="1" id="interval" minlength="1" value="1" oninput="validity.valid;">
+                <span> seconds</span>
+            </div>
         </div>
         <div id="mid_row">
-            <div id="last_block">LAST BLOCK<br>6431172</div>
-            <div id="transactions">Transactions<br>317M</div>
+            <div id="last_block">LAST BLOCK<br><span id="block_height">??</span>(not updating)</div>
+            <div id="transactions">Transactions<br>317M<br>(not functioning)</div>
         </div>
         <div id="bot_row">
-            <div id="hash_rate">Hash Rate<br>266 GH/s</div>
-            <div id="difficulty">Network difficulty<br>3626 TH</div>
+            <div id="hash_rate">Hash Rate<br>266 GH/s<br>(not functioning)</div>
+            <div id="difficulty">Network difficulty<br>3626 TH<br>(not functioning)</div>
         </div>
 
 
@@ -29,15 +33,10 @@
 
     </div>
 
-    <h1> The price of ethereum is currently $<span id="ethprice">???</span> USD</h1>
-
     <p>The api was last called at <span id="timecalled">?</span> and the API last gave a result at <span id="timeupdated">?</span></p>
 
-    <br><br>
-    <input type="checkbox" id="toggleupdate" onclick=autoupdate()>
-    <span>Displayed ethereum price will update every</span>
-    <input style="width: 3em" type="number" min="1" id="interval" minlength="1" value="1" oninput="validity.valid;">
-    <span> seconds</span>
+
+
 
   </body>
   <script src="index.js"></script>
