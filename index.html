@@ -5,10 +5,30 @@
     <title>Mark's budget ethereum tracking page</title>
     <link rel="stylesheet" href="index.css">
     <script src="APIkey.js"> </script>
-    <script src="index.js"></script>
+    
    
   </head>
   <body>
+    <div id="ethereum_info">
+        <div id="top_row">
+            <div id="image"><img id="image" src="Assets/eth_icon.png"></div>
+            <div id="price_info">$233.25 @ 0.0351 BTC/ETH</div>
+            <div id="autoupdate_box"><input type="checkbox"></div>
+        </div>
+        <div id="mid_row">
+            <div id="last_block">LAST BLOCK<br>6431172</div>
+            <div id="transactions">Transactions<br>317M</div>
+        </div>
+        <div id="bot_row">
+            <div id="hash_rate">Hash Rate<br>266 GH/s</div>
+            <div id="difficulty">Network difficulty<br>3626 TH</div>
+        </div>
+
+
+
+
+    </div>
+
     <h1> The price of ethereum is currently $<span id="ethprice">???</span> USD</h1>
 
     <p>The api was last called at <span id="timecalled">?</span> and the API last gave a result at <span id="timeupdated">?</span></p>
@@ -20,4 +40,5 @@
     <span> seconds</span>
 
   </body>
+  <script src="index.js"></script>
 </html>

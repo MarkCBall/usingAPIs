@@ -1,19 +1,77 @@
         
 html{
-    /* height:100%;  */
+    height:100%;
   }
-  body {
+body {
     font-family: verdana;
-    background-color: #ABC;
+    background-color: rgb(103, 142, 180);
     padding: 0px;
-    /* height:100%; */
-    /* display: flex; */
-    /* align-items: center; sets entire calc in vertical middle */
-    /* justify-content:center; sets entire calc in horizontal middle */
+    height:100%;
   }
-  
-  
-  div{
-    box-sizing: border-box; /*makes border part of dimension calcs*/
-  /*   Must be done on all elements, as children/grandchildren have borders */
-  }
+
+div div{
+    align-items: center;
+    justify-content:center;
+}
+
+ #ethereum_info{
+     display:flex;
+     flex-direction:column;
+     height:35%;
+     width:35%;
+     background-color: rgba(43, 255, 0, 0.2) ;
+ }
+#top_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(98, 121, 93, .5) ; */
+    flex-direction:row;
+}
+#image{
+    display:flex;
+    width:20%;
+}
+#image img{
+    display:flex;
+    width:100%;
+}
+#price_info{
+    display:flex;
+    width:40%;
+}
+#autoupdate_box{
+    display:flex;
+    width:40%;
+}
+
+
+#mid_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(27, 28, 110, 0.281) ; */
+    flex-direction:row;
+}
+#last_block{
+    display:flex;
+    width:50%;
+}
+#transactions{
+    display:flex;
+    width:50%;
+}
+
+
+
+#bot_row{
+    display:flex;
+    height:33.3%;
+    /* background-color: rgba(39, 13, 3, 0.281) ; */
+    flex-direction:row;
+}
+#hash_rate{
+    display:flex;
+    width:50%;
+}
+#difficulty{
+    display:flex;
+    width:50%;
