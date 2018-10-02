@@ -1,6 +1,7 @@
         const API_ethprice = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=";
         const API_uplastblock ="";
-        const API_KEY = APIkey();//the API key is not pushed to github this way
+        //const API_KEY = APIkey();//the API key is not pushed to github this way has one function that returns SS6K7PG8J46S6I5X4UQ6ZWZN6MPGITM7G6
+        const API_KEY = "SS6K7PG8J46S6I5X4UQ6ZWZN6MPGITM7G6";
   
         //gets the current ethereum price from etherscan and calls a function to update the screen
         function upethprice(){
