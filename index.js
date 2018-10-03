@@ -10,6 +10,16 @@
           .then(res => {
               document.getElementById("ethprice").innerHTML = res.result.ethusd;
               updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
+              if (res.status != "1")
+              console.log("error loading ethereum price from etherscan.io");  
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //ADD MORE ERROR CATCHING STUFF HERE
+          //.catch ect
           })
         }
 
