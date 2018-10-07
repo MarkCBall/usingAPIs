@@ -2,15 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Mark's budget ethereum tracking page</title>
+    <title>Mark's ethereum tracking page</title>
     <link rel="stylesheet" href="index.css">
-    <script src="APIkey.js"> </script>
+    <!-- not currently used for simplicity -->
+    <!-- <script src="APIkey.js"> </script> -->
     
    
   </head>
   <body>
     <div id="ethereum_info">
-        <div id="top_row">
+        <!-- top row -->
+        <div class="row">
             <div id="image"><img id="image" src="Assets/eth_icon.png"></div>
             <div id="price_info">Eth price is<br><span id="ethprice">???</span> USD </div>
             <div id="toggleupdate"><input type="checkbox" onclick=autoupdate()>
@@ -19,11 +21,13 @@
                 <span> seconds</span>
             </div>
         </div>
-        <div id="mid_row">
+        <!-- middle row -->
+        <div class="row">
             <div id="last_block">LAST BLOCK<br><span id="block_height">??</span>(not updating)</div>
             <div id="transactions">Transactions<br>317M<br>(not functioning)</div>
         </div>
-        <div id="bot_row">
+        <!-- bottom row -->
+        <div class="row">
             <div id="hash_rate">Hash Rate<br>266 GH/s<br>(not functioning)</div>
             <div id="difficulty">Network difficulty<br>3626 TH<br>(not functioning)</div>
         </div>
@@ -39,5 +43,6 @@
 
 
   </body>
+  <!-- This must be called after html is initialized as it edits html elements -->
   <script src="index.js"></script>
 </html>

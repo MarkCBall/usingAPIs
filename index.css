@@ -14,7 +14,7 @@ div div{
     justify-content:center;
     flex-direction:column;
 }
-
+/* entire box */
  #ethereum_info{
      display:flex;
      flex-direction:column;
@@ -22,12 +22,15 @@ div div{
      width:50%;
      background-color: rgba(43, 255, 0, 0.2) ;
  }
-#top_row{
+
+ .row{
     display:flex;
     height:33.3%;
-    /* background-color: rgba(98, 121, 93, .5) ; */
     flex-direction:row;
 }
+
+
+ /* top row */
 #image{
     display:flex;
     width:20%;
@@ -53,12 +56,7 @@ div div{
 }
 
 
-#mid_row{
-    display:flex;
-    height:33.3%;
-    /* background-color: rgba(27, 28, 110, 0.281) ; */
-    flex-direction:row;
-}
+/* mid row */
 #last_block{
     display:flex;
     width:50%;
@@ -70,12 +68,7 @@ div div{
 
 
 
-#bot_row{
-    display:flex;
-    height:33.3%;
-    /* background-color: rgba(39, 13, 3, 0.281) ; */
-    flex-direction:row;
-}
+/* bottom row */
 #hash_rate{
     display:flex;
     width:50%;
