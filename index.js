@@ -12,15 +12,22 @@
         
         //gets the current ethereum price from etherscan and calls a function to update the screen
         function upethprice(){
-          fetch(API_ethprice+API_KEY)
-          .then( result => result.json() )
-          .then(res => {
-              document.getElementById("ethprice").innerHTML = res.result.ethusd;
-              updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
-              if (res.status != "1")
-              console.log("error loading ethereum price from etherscan.io");  
-          })          
-          .catch(err => console.log("Etherscan.io failed because of error: "+ err));
+            //send info request to server
+            fetch(API_ethprice+API_KEY)
+            //when the server responds, do this
+            .then( result => result.json() )
+            //when the server responds, do this
+            .then(res => {
+            //if an error happens that is not classified as an error (etherscan.io didn't work well)
+            if (res.status != "1")
+                throw ("etherscan.io error, failed to load");  
+            //update ethereum price
+            document.getElementById("ethprice").innerHTML = res.result.ethusd;
+            //update the clock on most recent update of eth price
+            updateClock("timeupdated",res.result.ethusd_timestamp*1000 );
+            })
+            //if an error was found, do this
+            .catch(err => console.log("Etherscan.io failed because of error: "+ err));
         }//endupethprice
 
 
@@ -62,16 +69,22 @@
          
         //cancels or starts auto updating ethereum price and checks if the window is already updating
         function autoupdate(){
+            //if the checkbox is not ticked
             if (updateinterval==null){
+                //minimum update interval is 1, and the onscreen number represents 1000ms
                 let delay = Math.max(1000,document.getElementById("interval").value*1000);
+                //sets the variable updateinterval
                 updateinterval = setInterval(function(){upethprice();updateClock("timecalled");},delay);
-                //disallow changes to interval length checkbox
+                //disallow changes to interval length numerical input
                 document.getElementById("interval").disabled=true;
             }
+            //if the box is ticked
             else{
+                //stops the iterative updating (must reference the instance of Interval) 
                 clearInterval(updateinterval);
+                //indicate that the updateinterval is not set 
                 updateinterval = null;
-                //allow changes to interval length checkbox
+                //allow changes to interval length numerical input
                 document.getElementById("interval").disabled=false;
                 }
         }//end updateinterval
